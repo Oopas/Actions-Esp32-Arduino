@@ -49,7 +49,7 @@ jobs:
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install $(curl -fsSL git.io/depends-ubuntu-2004)
         sudo -E apt-get install git wget curl libssl-dev libncurses-dev flex bison gperf python3 python3-pip cmake ninja-build ccache jq -y
-        sudo -E pip install --upgrade pip
+        sudo -E pip3 install --upgrade pip
         pip install setuptools serial click cryptography future pyparsing pyelftools 
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
@@ -92,7 +92,7 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        make -j$(nproc) || make -j1 || make -j1 V=s
+        ./build.sh
         echo "::set-output name=status::success"
         echo "Esp32" > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
