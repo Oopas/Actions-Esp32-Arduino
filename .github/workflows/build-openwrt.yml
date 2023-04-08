@@ -67,7 +67,7 @@ jobs:
     - name: Patch Script
       run: |
         cd openwrt
-        sed  "s/git -C \"\$AR_COMPS\/esp-rainmaker\" submodule update --init --recursive/git -C \"\$AR_COMPS\/esp-rainmaker\" submodule update --init --recursive \&\& git -C \"\$AR_COMPS\/esp-rainmaker\" checkout 741b2c6/g" "tools/update-components.sh"
+        sed -i "s/git -C \"\$AR_COMPS\/esp-rainmaker\" submodule update --init --recursive/git -C \"\$AR_COMPS\/esp-rainmaker\" submodule update --init --recursive \&\& git -C \"\$AR_COMPS\/esp-rainmaker\" checkout 741b2c6/g" "tools/update-components.sh"
 
     - name: Patch CMakeLists.txt
       run: cd openwrt && sed -i "s/set(EXTRA_COMPONENT_DIRS/\#set(EXTRA_COMPONENT_DIRS/g" "CMakeLists.txt"
